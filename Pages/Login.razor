@@ -1,0 +1,30 @@
+@page "/replays/login"
+
+<Header Title="Login" />
+
+<main>
+    
+    <div class="error">
+        @if (!string.IsNullOrEmpty(error))
+        {
+            <p>@error</p>
+        }
+    </div>
+
+    <form @onsubmit="LoginUser">
+
+        <input type="text" @bind="username">
+
+        <input type="password" @bind="password">
+
+        <button>Login</button>
+    </form>
+
+
+    <div class="sign-up">
+        <p>
+            Don't have an account? <a href="/register">Sign up</a>
+        </p>        
+    </div>
+
+</main>

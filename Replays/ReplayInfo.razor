@@ -1,0 +1,71 @@
+<div class="main">
+    @if (Data != null)
+    {
+    
+
+        <div class="top">
+            <div class="left">
+                <p>
+                    Uploaded the <br> @(Data["date"])
+                </p>
+            
+                <div class="mode">
+                    <p>
+                        @(Data["modeName"])
+                    </p>
+
+                    <img src="./images/@(Data["modePath"])" alt="@(Data["modeName"]) icon">
+                </div>
+            </div>
+
+            <div class="right">
+                <p>
+                    @(Data["mapName"])
+                </p>
+
+                <img class="right" src="@(Data["mapUrl"])" alt="@(Data["mapName"])" />
+            </div>
+
+        
+        </div>
+        <div class="middle">
+            <div class="mid-top">
+                <div class="weapon">
+                    <img class="big" src="@(Data["mainUrl"])" alt="@(Data["mainName"])" />
+                    <div class="sub-spe">
+                        <img class="small" src="@(Data["subUrl"])" alt="@(Data["subName"])" />
+                        <img class="small" src="@(Data["speUrl"])" alt="@(Data["speName"])" />
+                    </div>
+                </div>
+
+                <div class="name">
+                    <p>@(Data["userName"])</p>
+                    <p>
+                        @(string.IsNullOrWhiteSpace("" + Data["twitterName"]) 
+                            ? "Unknown" 
+                            : "@" + Data["twitterName"])
+                    </p>
+                </div>
+            </div>
+
+            <div class="code">
+                <p>@(Data["code"])</p>
+            </div>
+
+        </div
+        <div class="bottom">
+            <textarea placeholder="No description provided" cols="55" readonly>
+                @(Data["description"])
+            </textarea>
+        </div>
+
+    }
+    else
+    {
+        <div class="loading">
+            <p>
+                Select a replay to see more informations
+            </p>
+        </div>
+    }
+</div>

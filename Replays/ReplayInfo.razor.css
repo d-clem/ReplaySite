@@ -1,0 +1,160 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    background-color: rgb(100, 100, 100);
+    color: white;
+    padding: 1rem;
+    
+    border-radius: 2rem;
+
+    font-size: 20px;
+    resize: horizontal;
+}
+
+.mode {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.mode > img  {
+    width: 100px;
+}
+
+.mode > p {
+    font-size: 27.5px;
+    font-weight: bold;
+}
+
+.top {
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.right > img {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+.right {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: column;
+}
+
+.left {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+}
+
+
+.middle {
+    background-color: rgb(40, 40, 40);
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    border-radius: 1rem;
+    padding: 0 0.5rem;
+}
+
+.mid-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 1rem;
+}
+
+.weapon {
+    width: 150px;
+    display: grid;
+    grid-template-columns: 100px 50px;
+}
+
+.sub-spe {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.name {
+    text-align: center;
+}
+
+.big {
+    width: 100px;
+    height: 100px;
+}
+
+.small {
+    width: 50px;
+    height: 50px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom > textarea {
+    background-color: white;
+    color: black;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    min-height: 85px;
+    max-height: 85px;
+    overflow-y: auto;
+    resize: none;
+    width: 100%;
+}
+
+.bottom > textarea::-webkit-scrollbar {
+    display: none;
+}
+
+
+.loading {
+    text-align: center;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .top {
+        grid-template-columns: 1fr;
+    }    
+}
+
+@media screen and (max-width: 900px) {
+    /* margin on sides */
+    .main {
+        margin: 0 1rem;
+    }
+
+    .left {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .mode {
+        align-items: center;
+    }
+
+    .right {
+        align-items: center;
+    }
+
+    .right > img {
+        width: 50%;
+        aspect-ratio: 16/9;
+    }
+}

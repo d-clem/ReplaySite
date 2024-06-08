@@ -1,0 +1,84 @@
+@page "/replays/profile"
+
+
+<PageTitle>Splatoon 3 replays</PageTitle>
+
+<Header Title="Your Profile" />
+
+@if (userData == null)
+{
+    <p> loading </p>
+}
+
+else 
+{
+    <main>
+
+        <div class="error">
+            @if (!string.IsNullOrEmpty(error))
+            {
+                <p>@error</p>
+            }
+        </div>
+        <div class="success">
+            @if (!string.IsNullOrEmpty(confirmation))
+            {
+                <p>@confirmation</p>
+            }
+        </div>
+
+
+        <form @onsubmit="RegisterUser">
+
+            <div class="left">
+                <label for="name">Name</label>
+                <input type="text" name="name" placeholder="Enter your name" 
+                        @bind="userData.Name">
+            </div>
+
+            <div class="right">
+                <input type="text" name="login" placeholder="Enter your login" 
+                        @bind="userData.Login">
+                <label for="login">Login</label>
+            </div>
+
+            <div class="left">
+                <label for="password">New Password</label>
+                <input type="password" name="password" placeholder="New password" 
+                        @bind="newPassword">
+            </div>
+
+            <div class="right">
+                <input type="password" name="confirmPassword" placeholder="Confirm your password" 
+                        @bind="confirmPassword">
+                <label for="confirmPassword">Confirm Password</label>
+            </div>
+
+            <div class="left">
+                <label for="twitter">Twitter</label>
+                <input type="text" name="twitter" placeholder="Twitter (optional)" 
+                        @bind="userData.TwitterName">                
+            </div>
+
+            <div class="left">
+                <label for="oldPassword">Current password to confirm</label>
+                <input type="password" name="oldPassword" placeholder="Enter current password" 
+                        @bind="oldPassword">
+            </div>
+
+            <div class="right">
+                <button name="send">
+                    Save
+                </button>
+                <label for="send">&nbsp;</label>
+            </div>
+        </form>
+
+        <div>
+            <a href="replays/profile/my-replays">
+                My replays
+            </a>
+        </div>
+
+    </main>
+}

@@ -1,0 +1,23 @@
+<div class="main" @onclick="Deploy">
+
+    <div class="weapon">
+        <img src="@(Data["mainUrl"])" alt="Arme du replay" >
+    </div>
+
+    <div class="code">
+        @(Data["code"])
+    </div>
+
+    <div class="map">
+        @(Data["mapName"])
+    </div>
+
+    <div class="mode">
+        <img src="@(Data["modeUrl"])" alt="">
+    </div>
+
+    <div class="name">
+        @(Data["userName"])
+    </div>
+
+</div>

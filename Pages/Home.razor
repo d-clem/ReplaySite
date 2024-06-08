@@ -1,0 +1,194 @@
+﻿@page "/"
+@page "/replays/"
+
+
+
+<PageTitle>Splatoon 3 replays</PageTitle>
+
+<Header Title="Replay Codes" />
+
+<main>
+
+    <div class="space"></div>
+
+    <div class="search">
+        <p>
+            Search for a replay
+        </p>
+
+        <div class="input">
+            <input type="search" @oninput="Search" placeholder="Search for a replay" />
+        </div>
+
+        <br><br>
+
+        <div class="results">
+            <h3>Results</h3>
+
+            <ul>
+                <div class="head">
+
+                    <div>
+                        Weapon
+                    </div>
+
+                    <div>
+                        Code
+                    </div>
+
+                    <div>
+                        Map
+                    </div>
+
+                    <div>
+                        Mode
+                    </div>
+
+                    <div>
+                        User
+                    </div>
+
+                </div>
+                @for (int i = 0; i < (DISPLAY_LIMIT > replays.Count ? replays.Count : DISPLAY_LIMIT) && replays.Count > 0; i++)
+                {
+                    var index = i;
+                    <Replay OnDeploy="@(() => OnDeploy(index))" Data="@replays[i]" /> 
+                }
+            </ul>
+        </div>
+
+        <div class="pages">
+            @if (replays.Count > 0)
+            {
+                <button id="previous" @onclick="PreviousPage" disabled="@(currentPage == 1)">
+                    <img src="./images/next.svg">
+                </button>
+                
+                <div>
+                    <span>
+                        Page @currentPage of @(pagesNumber)
+                    </span>
+
+                    <select class="page-selector" 
+                            @bind="currentPage" 
+                            @bind:after="(() => Search(null) )">
+                        
+                        @for (int i = 1; i <= pagesNumber; i++)
+                        {
+                            var value = i;
+                            <option value="@value">
+                                @i
+                            </option>
+                        }
+                    </select>
+
+
+                </div>
+
+                <button id="next" @onclick="NextPage" disabled="@(currentPage == pagesNumber)">
+                    <img src="./images/next.svg">
+                </button>
+            }
+        </div>
+
+        <br><br>
+
+    </div>
+
+    <div class="space"></div>
+
+    <div class="right">
+
+        @if (loggedIn)
+        {
+
+            <div class="create">
+                <p>
+                    Upload a new replay
+                </p>
+
+                <div class="error" style="display: @displayError ;">
+                    @errorMessage
+                </div>
+
+                <div class="line">
+                    <div class="input">
+                        <span for="code">Replay Code</span>
+                        <input name="code" type="text" maxlength="19" minlength="16" @bind="replayCode" placeholder="Enter the code" />
+                    </div>
+
+                    <div class="input">
+                        <span for="description">Description</span>
+                        <textarea name="description" @bind="description" maxlength="1000" cols="25"></textarea>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="input">
+                        <span for="weapon">Weapon</span>
+                        <select name="weapon" @bind="weapon">
+                            @foreach (var weapon in weapons)
+                            {
+                                <option value="@weapon.Id">
+                                    @weapon.Name 
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="input">
+                        <span for="map">Map</span>
+                        <select name="map" @bind="map">
+                            @foreach (var map in maps)
+                            {
+                                <option value="@map.Id">
+                                    @map.Name 
+                                </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="line">
+                    <div class="input">
+                        <span for="mode">Mode</span>
+                        <select name="mode" @bind="mode">
+                            @foreach (var mode in modes)
+                            {
+                                <option value="@mode.Id">
+                                    @mode.Name
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="input">
+                        <div class="space">&nbsp;</div>
+                        <button @onclick="Send" >Submit</button>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="login">
+                <div class="login-infos">
+                    <p>
+                        You need to login to upload a replay
+                    </p>
+                    <a href="/login">Login</a>
+                </div>
+            </div>
+        }
+
+        <br>
+
+        <ReplayInfo Data="@currentReplay" />
+    </div>
+
+
+    
+    <div class="space"></div>
+</main>
+
+<br><br><br>

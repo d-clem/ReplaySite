@@ -1,0 +1,87 @@
+<div class="header">
+    <div class="home" @onclick="Home">
+        <img src="./images/home.svg" alt="logo">
+    </div>
+
+    <h1>@Title</h1>
+
+    <div>
+        <div class="login" @onclick="ToogleMenu">
+            <img src="./images/user.svg" alt="user icon">
+
+
+        </div>
+
+        <div class="closer" style="display: @closer;" @onclick="CloseMenu"></div>
+        
+        @if (closer == "block")
+        {
+            <div class="menu">
+
+                @if (loggedIn)
+                {
+                    <div>
+                        <a href="replays/profile">
+                            Profile
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="replays/profile/my-replays">
+                            My replays
+                            
+                        </a>
+                    </div>
+
+                    <div>
+                        <a>
+                            Settings
+                        </a>
+                    </div>
+
+                    <div>
+                        <a @onclick="Logout">
+                            Logout
+                        </a>
+                    </div>
+
+                    <button class="delete" @onclick="ToogleDelete">
+                        Delete account
+                    </button>
+
+                    @if (deleting)
+                    {
+                        <p>Are you sure you want to delete your account?</p>
+
+                        <div class="buttons">
+                            <button class="delete" @onclick="Delete">Yes</button>
+                            <button @onclick="ToogleDelete">No</button>
+                        </div>
+                    }
+
+                    @if (deletingAccount)
+                    {
+                        <p> Do you want to set your replays to anonymous or delete them </p>
+                        <div class="buttons-v">
+                            <button class="delete" @onclick="DeleteAccount">Delete</button>
+                            <button @onclick="SetAnonymous">Anonymous</button>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <a href="/login">
+                        Login
+                    </a>
+
+                    <a href="/register">
+                        Register
+                    </a>
+                }
+
+            </div>
+        }
+
+    </div>
+
+</div>
